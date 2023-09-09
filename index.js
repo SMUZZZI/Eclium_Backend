@@ -2,10 +2,15 @@ import express from "express"
 import mongoose from "mongoose"
 import multer from "multer"
 import cors from "cors"
+import checkAuth from "./utils/checkAuth.js"
+
+
+import userRouter from './routes/user.routes.js'
+import songRouter from './routes/songs.routes.js'
 
 const PORT = process.env.PORT || 5000
 
-mongoose.connect("mongodb+srv://smuzzzzzzi:Gp4aOsfLnySvmwVS@eclium.ricvrfw.mongodb.net/app?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://smuzzzzzzi:Gp4aOsfLnySvmwVS@eclium.ricvrfw.mongodb.net/App?retryWrites=true&w=majority")
         .then(() => console.log("DB ok"))
         .catch((err) => console.log("DB error", err));
 
@@ -22,8 +27,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
-app.post("/upload", upload.single("file"), (req, res) => {
-        res.json({ 
+app.post("/upload", checkAuth, upload.single("file"), (req, res) => {
+        res.json({
                 url: `/uploads/${req.file.originalname}`
         })
 })
@@ -32,5 +37,9 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/uploads", express.static("uploads"))
+
+app.use("/api", userRouter)
+app.use("/api", songRouter)
+
 
 app.listen(PORT, () => console.log(`Server started on PORT: ${PORT}`))

@@ -11,4 +11,4 @@ const SongSchema = new mongoose.Schema({
     timestamps: true,
 })
 
-export default mongoose.Model('Song', SongSchema)
+export default mongoose.model('Song', SongSchema)
