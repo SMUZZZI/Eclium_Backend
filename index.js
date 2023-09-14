@@ -29,7 +29,7 @@ const upload = multer({ storage })
 
 app.post("/upload", checkAuth, upload.single("file"), (req, res) => {
         res.json({
-                url: `/uploads/${req.file.originalname}`
+                url: `http://45.84.226.30:5000/uploads/${req.file.originalname}`
         })
 })
 
