@@ -233,9 +233,8 @@ class UserController {
     }
     async getsubscriptions(req, res) {
         try {
-            const id = req.params.id
-            const user = await UserModel.find({_id: id})
-
+            let _id = req.params.id
+            const user = await UserModel.findOne({ _id })
             const result = []
 
             for (let i = 0; i < user.subscribtions.length; i++) {
