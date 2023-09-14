@@ -41,7 +41,7 @@ app.post("/upload", checkAuth, upload.single("file"), (req, res) => {
 app.use(express.json())
 
 app.use(cors({
-        origin: 'http://smuzi-portfolio2.ru'
+        origin: 'http://45.84.226.30:5000/*'
 }))
 
 app.use("/uploads", express.static("uploads"))
