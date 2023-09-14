@@ -27,9 +27,15 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
+app.all('/', function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        next();
+       });
+
 app.post("/upload", checkAuth, upload.single("file"), (req, res) => {
         res.json({
-                url: `http://45.84.226.30:5000/uploads/${req.file.originalname}`
+                url: `/uploads/${req.file.originalname}`
         })
 })
 
