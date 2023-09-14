@@ -40,7 +40,7 @@ app.post("/upload", checkAuth, upload.single("file"), (req, res) => {
 
 app.use(express.json())
 let allowCors = function(req, res, next) {
-        res.header('Access-Control-Allow-Origin', "http://45.84.226.30:5000");
+        res.header('Access-Control-Allow-Origin', "45.84.226.30:5000");
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header('Access-Control-Allow-Headers', 'Content-Type');
         next();
