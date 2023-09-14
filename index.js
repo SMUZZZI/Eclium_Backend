@@ -39,7 +39,7 @@ app.post("/upload", checkAuth, upload.single("file"), (req, res) => {
 })
 
 app.use(express.json())
-app.use(cors())
+// app.use(cors())
 
 app.use("/uploads", express.static("uploads"))
 
