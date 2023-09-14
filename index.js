@@ -41,7 +41,7 @@ app.post("/upload", checkAuth, upload.single("file"), (req, res) => {
 
 app.use(express.json())
 app.use(cors({
-        origin: myorigin.tld,
+        // origin: myorigin.tld,
         allowedHeaders: ['Accept-Version', 'Authorization', 'Credentials', 'Content-Type']
 }))
 
