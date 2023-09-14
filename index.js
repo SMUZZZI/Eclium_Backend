@@ -16,12 +16,6 @@ mongoose.connect("mongodb+srv://smuzzzzzzi:Gp4aOsfLnySvmwVS@eclium.ricvrfw.mongo
 
 const app = express()
 
-// app.all('/', function (req, res, next) {
-//         res.header("Access-Control-Allow-Origin", "*");
-//         res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//         next();
-// });
-
 const storage = multer.diskStorage({
         destination: (_, __, cb) => {
                 cb(null, "uploads");
@@ -39,7 +33,15 @@ app.post("/upload", checkAuth, upload.single("file"), (req, res) => {
 })
 
 app.use(express.json())
-app.use(cors())
+
+let allowCors = function(req, res, next) {
+        res.header('Access-Control-Allow-Origin', "45.84.226.30");
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        next();
+    }
+
+app.use(allowCors())
 
 app.use("/uploads", express.static("uploads"))
 
