@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
-app.post("/upload", checkAuth, upload.single("file"), (req, res) => {
+app.post("/upload", checkAuth, cors(), upload.single("file"), (req, res) => {
         res.json({
                 url: `/uploads/${req.file.originalname}`
         })
