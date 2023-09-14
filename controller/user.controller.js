@@ -233,7 +233,8 @@ class UserController {
     }
     async getsubscriptions(req, res) {
         try {
-            const user = await UserModel.findById(req.userId);
+            const id = req.params.id
+            const user = await UserModel.find({_id: id})
 
             const result = []
 
